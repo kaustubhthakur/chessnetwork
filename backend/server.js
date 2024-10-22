@@ -8,6 +8,7 @@ const cookieparser = require('cookie-parser')
 const authrouter = require('./routes/auth')
 const postrouter = require('./routes/posts')
 const usersrouter = require('./routes/users')
+const { mongoUrl } = require('./your_mongourl_path')
 
 app.use(express.json())
 app.use(cors())
@@ -16,7 +17,7 @@ app.use(cookieparser());
 const connection = async()=> 
 {
     try {
-        await mongoose.connect(process.env.MONGO_DB);
+        await mongoUrl.connect(process.env.MONGO_DB);
         console.log('database is connected...');
     } catch (error) {
         console.error(error);
